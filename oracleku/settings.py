@@ -168,4 +168,4 @@ TINYMCE_DEFAULT_CONFIG = {
     'statusbar': True
 }
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
