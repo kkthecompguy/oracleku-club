@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Kenyatta University Oracle Club | Welcome To The Community
+{% endblock %}
+
+{% block showcase %}
+  <style>
+    .showcase {
+      position: relative;
+      height: 100vh;
+      background: url("{% static 'images/programmers.jpeg' %}");
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      opacity: 0.8;
+      background-attachment: fixed;
+    }
+  </style>
+  <div class="showcase">
+    
+    <div class="showcase-text">
+      <h1>A community of tech enthusiastic people</h1>
+      <p>Bring your idea to life through oracle technologies</p>
+      <a href="{% url 'signup:index' %}" class="btn btn-success btn-sm font-a">Become a Member</a>
+    </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div id="events">
+    <h2 class="text-center mt-5 py-4 display-4">Upcoming Events</h2>
+    <div class="row mt-5">
+      {% for event in featured_events %}
+      <div class="col-sm-12 col-md-4 mt-3">
+        <div class="card h-100">
+          <img src="{{event.thumbnail.url}}" alt="Event Thumbnail" class="card-img-top">
+          <div class="card-body text-center">
+            <p class="lead" style="margin: 0;">{{event.overview}}</p>
+            <a href="{% url 'events:events-detail' event.slug %}" class="btn btn-info btn-sm">View</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="text-center mt-5">
+      <a href="{% url 'events:index' %}" class="btn btn-primary">View all events</a>
+    </div>
+  </div>
+  <hr class="mt-5 mb-5">
+{% endblock %}
+
+{% block partners %}
+  <div>
+    <h2 class="text-center mt-5 py-4 mb-5">Ku Oracle Club <br> Partnership</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <img src="{% static 'images/oracle-logo.png' %}" alt="" class="card-img-top">
+      </div>
+      <div class="col-md-4">
+        <img src="{% static 'images/dscku-logo.jpg' %}" alt="" class="card-img-top">
+      </div>
+      <div class="col-md-4">
+        <img src="{% static 'images/ku-logo.png' %}" alt="" class="card-img-top">
+      </div>
+    </div>
+  </div>
+{% endblock %}

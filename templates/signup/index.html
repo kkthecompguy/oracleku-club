@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Members SignUp
+{% endblock %}
+
+{% block signup %}
+  <style>
+    .showcase {
+      position: relative;
+      opacity: 0.8;
+      margin: 0;
+      height: 100vh;
+      background: url("{% static 'images/programmers.jpeg' %}");
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+  </style>
+  <div class="showcase">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto mt-4">
+          <div class="card card-body mt-5">
+            <h3 class="text-center">Register Account</h3>
+            <form action="{% url 'signup:index' %}" method="POST">
+              {% csrf_token %}
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
+                  {{form.username}}
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
+                  {{form.first_name}}
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
+                  {{form.last_name}}
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fas fa-at"></i></span>
+                  {{form.email}}
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fas fa-key"></i></span>
+                  {{form.password1}}
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fas fa-key"></i></span>
+                  {{form.password2}}
+                </div>
+              </div>
+              <div class="form-group text-center">
+                <input type="submit" value="Register" class="btn btn-info btn-block">
+                <span>Already have an account? <a href="{% url 'signup:login' %}">Login</a></span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{event.title}}
+{% endblock %}
+
+{% block content %}
+  <div class="row" style="width: 100%;">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <p>{{event.event_date|date:"D, d M, Y"}}</p>
+      <h3>{{event.title}}</h3>
+      <p class="event-host">
+        <img src="{% static 'images/ku-oracle-logo.jpg' %}">
+        <span class="host">
+          <span><small>Hosted by</small></span>
+          <span><small>{{event.host.first_name}} {{event.host.last_name}}</small></span>
+        </span>
+      </p>
+    </div>
+  </div>
+
+  <div class="row" style="width: 100%;">
+    <div class="col-lg-8 col-md-8 col-sm-12 mb-3">
+      <div>
+        <img src="{{event.thumbnail.url}}" class="card-img-top" alt="Event Thumbnail" style="width: 100%;">
+      </div>
+      <div class="mt-4" style="width: 100%; overflow: auto;">
+        <h2>Details</h2>
+        {{event.description|safe}}
+      </div>
+      <div>
+        <h2>Attendees ({{event.attendees.count}})</h2>
+        <div>
+          <ul class="attendees">
+            {% for user in event.attendees.all %}
+              <li>
+                <a href="{{user.get_absolute_url}}">
+                  <div class="attendee-info">
+                    <img src="{% static 'images/default_profile.jpg' %}" alt="">
+                  <span>
+                    {{user.first_name}} {{user.last_name}}
+                  </span>
+                </div>
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-12">
+      <div class="card card-body">
+        <div class="group-details">
+          <div class="group-logo">
+            <img src="{% static 'images/ku-oracle-logo.jpg' %}" alt="">
+          </div>
+          <div class="group-info">
+            <span>KU-Oracle</span>
+            <span>Kenyatta University Club</span>
+          </div>
+        </div>
+      </div>
+      <div class="card card-body mt-3">
+        <div class="timeline">
+          <div>
+            <span>{{event.event_date|date:"D, d M, Y"}}</span>
+            <span>{{event.from_time}} to {{event.to_time}}</span>
+            <span><a href="">Add to Calendar</a></span>
+          </div>
+          <div>
+            <span>{{event.event_type}}</span>
+            {% if event.event_type == "Online Event" %}
+              <span>Link visible for attendees</span>
+            {% else %}
+              <span>{{event.venue}}</span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="card card-body mt-3">
+        <div class="attend">
+          {% if request.user.is_authenticated %}
+            {% if user_already_in_list %}
+              <button class="btn btn-success btn-lg">Going</button>
+            {% else %}
+              <form action="" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-lg">Attend</button>
+              </form>
+            {% endif %}
+          {% else %}
+            <form action="" method="POST">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger btn-lg">Attend</button>
+            </form>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Members Profile
+{% endblock %}
+
+{% block content %}
+  <div class="row mt-5 mb-5" style="height: 50vh;">
+    <div class="col-md-6 mt-2">
+      <div>
+        <img src="{% static 'images/default_profile.jpg' %}" alt="">
+      </div>
+    </div>
+    <div class="col-md-6 mt-2">
+      <div class="member">
+        <span>Name: {{member.first_name}} {{member.last_name}}</span>
+        {% if member.is_staff %}
+          <span>Member Type: Core Member</span>
+        {% else %}
+          <span>Member Type: Regular Member</span>
+        {% endif %}
+        <span>
+          Location: Nairobi
+        </span>
+        <span>
+          Member Since: {{member.date_joined}}
+        </span>
+        {% if member.is_active %}
+          <span>
+            Status: <span class="text-success">active</span>
+          </span>
+        {% else %}
+          <span>
+            Status: <span class="text-danger">Inactive</span>
+          </span>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

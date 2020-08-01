@@ -1,0 +1,1 @@
+web: gunicorn oracleku.wsgi --log-file -
