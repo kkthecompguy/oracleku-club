@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '_1$!@1)g%ws4tso)#=f-+5-bq%i_#cqke2s!7mljl2#flrp8^s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'oracleku-club.herokuapp.com']
 
@@ -143,7 +143,7 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
 
 
 # Tinymce
@@ -169,3 +169,4 @@ TINYMCE_DEFAULT_CONFIG = {
 }
 
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# FILE_UPLOAD_PERMISSIONS = 0o640
