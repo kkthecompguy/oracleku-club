@@ -184,6 +184,13 @@ p {
   padding: 1rem;
 }
 
+.form-group-inline {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+
 
 @media (max-width: 568px) {
   h1 {

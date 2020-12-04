@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Create New Event
+{% endblock %}
+
+
+{% block content %}
+  <div class="container">
+    <h4>Create Event</h4>
+    {{form.errors}}
+    <div class="row mb-5">
+      <div class="col-sm-8 col-md-9 col-lg-10 mx-auto">
+        {{form.media}}
+        <form action="" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="from-group">
+            <label for="title">Title</label>
+            {{form.title}}
+          </div>
+          <div class="from-group">
+            <label for="slug">Slug</label>
+            {{form.slug}} 
+          </div>
+          <div class="from-group">
+            <label for="overview">Overview</label>
+            {{form.overview}}
+          </div>
+          <div class="from-group">
+            <label for="description">Description</label>
+            {{form.description}}
+          </div>
+          <div class="from-group">
+            <label for="thumbnail">Thumbnail</label>
+            {{form.thumbnail}}
+          </div>
+          <div class="from-group">
+            <label for="event_date">Event Date</label>
+            {{form.event_date}}
+          </div>
+          <div class="from-group">
+            <label for="from_time">From Time</label>
+            {{form.from_time}}
+          </div>
+          <div class="from-group">
+            <label for="to_time">To Time</label>
+            {{form.to_time}}
+          </div>
+          <div class="from-group">
+            <label for="event_type">Event Type</label>
+            {{form.event_type}}
+          </div>
+          <div class="from-group">
+            <label for="venue">Venue</label>
+            {{form.venue}}
+          </div>
+          <div class="from-group">
+            <label for="featured">Featured</label>
+            {{form.featured}}
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg">Create</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -14,7 +14,14 @@ class EventForm(forms.ModelForm):
     'cols': 30,
     'rows': 10
   }))
+  title = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+  slug = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+  overview = forms.Textarea(attrs={'class': 'form-control'})
+  event_date = forms.DateField(widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}))
+  from_time = forms.TimeField(widget=forms.TimeInput(attrs={'class': 'form-control', 'type': 'time'}))
+  to_time = forms.TimeField(widget=forms.TimeInput(attrs={'class': 'form-control', 'type': 'time'}))
+  venue = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
 
   class Meta:
     model = Event
-    fields = ['title', 'overview', 'description', 'thumbnail', 'event_date', 'from_time', 'to_time', 'event_type', 'venue', 'featured', ]
+    fields = ['title','slug', 'overview', 'description', 'thumbnail', 'event_date', 'from_time', 'to_time', 'event_type', 'venue', 'featured', ]

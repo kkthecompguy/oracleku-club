@@ -13,6 +13,8 @@ def index(request):
     form = SignUpForm(request.POST)
     if form.is_valid():
       form.save()
+      # @todo
+      # send mail to user
       return redirect('signup:login')
   context = {
     'form': form

@@ -97,6 +97,9 @@ DATABASES = {
 #     }
 # }
 
+USERNAME = "kosamdjango@gmail.com"
+PASSWORD = "oxmsxfilrsadinkc"
+SENDGRID_API_KEY = "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"
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -149,7 +152,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Tinymce
 TINYMCE_DEFAULT_CONFIG = {
     'height': 360,
-    'width': 1120,
+    'width': 820,
     'cleanup_on_startup': True,
     'custom_undo_redo_levels': 20,
     'selector': 'textarea',

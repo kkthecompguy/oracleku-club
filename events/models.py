@@ -34,11 +34,18 @@ class Event(models.Model):
   from_time = models.TimeField()
   to_time = models.TimeField()
   event_type = models.CharField(max_length=50, choices=EventType.choices, default=EventType.Online_Event)
-  venue = models.CharField(max_length=100)
+  venue = models.CharField(max_length=100, blank=True, null=True)
   status = models.BooleanField(default=True)
   featured = models.BooleanField(default=False)
-  review = models.CharField(max_length=255, blank=True)
+  review = models.CharField(max_length=255, blank=True, null=True)
   created_at = models.DateTimeField(auto_now_add=True)
 
   def __str__(self):
     return self.slug
+
+
+class Subscribe(models.Model):
+  email = models.EmailField()
+
+  def __str__(self):
+    return self.email

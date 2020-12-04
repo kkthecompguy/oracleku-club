@@ -18,3 +18,11 @@ def members_detail(request, pk):
     'member': member
   }
   return render(request, 'dashboard/member-detail.html', context)
+
+
+def privacy(request):
+  return render(request, 'dashboard/privacy.html', context={})
+
+
+def terms(request):
+  return render(request, 'dashboard/terms.html', context={})

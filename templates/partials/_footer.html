@@ -1,24 +1,41 @@
-<hr>
-<div class="container">
-  <div class="row mt-5 py-4">
+
+<div class="bg-secondary">
+<div class="container"> 
+  <form action="{% url 'events:subscribe' %}" method="POST" class="py-4">
+    {% csrf_token %}
+    <h4 class="text-white">Subscribe To Our Newsletter</h4>
+    <p class="text-white">Join the community to get latest events when uploaded to the site.</p>
+    <div class="form-inline">
+      <input type="text" name="email" id="email" class="form-control" placeholder="someone@example.com">
+      <button type="submit" class="btn btn-danger btn-inline">Subscribe</button>
+    </div>
+  </form>
+  <hr>
+  <div class="row py-2">
     <div class="col-md-6">
       <ul>
-        <li class="nav-item"><a href="#!" class="nav-link">About</a></li>
-        <li class="nav-item"><a href="#!" class="nav-link">Contact</a></li>
-        <li class="nav-item"><a href="https://www.oracle.com/ke/education/" target="_blank" class="nav-link">Oracle Courses</a></li>
-        <li class="nav-item"><a href="#!" class="nav-link">Blog</a></li>
+        <li class="nav-item"><a href="#!" class="nav-link text-white">About</a></li>
+        <li class="nav-item"><a href="#!" class="nav-link text-white">Contact</a></li>
+        <li class="nav-item"><a href="https://www.oracle.com/ke/education/" target="_blank" class="nav-link text-white">Oracle Courses</a></li>
+        <li class="nav-item"><a href="#!" class="nav-link text-white">Blog</a></li>
       </ul>
     </div>
     <div class="col-md-6">
       <ul>
-        <li class="nav-item"><a href="https://twitter.com/oracle_ku" target="_blank" class="nav-link">Twitter</a></li>
-        <li class="nav-item"><a href="#!" class="nav-link">Facebook</a></li>
-        <li class="nav-item"><a href="#!" class="nav-link">Linkedin</a></li>
-        <li class="nav-item"><a href="#!" class="nav-link">Instagram</a></li>
+        <li class="nav-item"><a href="https://twitter.com/oracle_ku" target="_blank" class="nav-link text-white">Twitter</a></li>
+        <li class="nav-item"><a href="#!" class="nav-link text-white">Facebook</a></li>
+        <li class="nav-item"><a href="#!" class="nav-link text-white">Linkedin</a></li>
+        <li class="nav-item"><a href="#!" class="nav-link text-white">Instagram</a></li>
       </ul>
     </div>
   </div>
 </div>
-<div class="py-4 mt-5 bg-dark text-center">
-  <p class="text-white"> Kenyatta University Oracle Club &copy; 2020</p>
 </div>
+<div class="py-4 bg-dark text-center">
+  <p class="text-white"> Kenyatta University Oracle Club &copy; <span id="year"></span> <a href="{% url 'dashboard:privacy' %}">Privacy</a> | <a href="{% url 'dashboard:terms' %}">Terms</a></p>
+</div>
+
+<script>
+  let year = new Date().getFullYear();
+  document.getElementById('year').innerHTML = year;
+</script>
