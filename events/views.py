@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.core.paginator import Paginator
+from datetime import date
 from .models import Event, Attendee, Subscribe
 from .forms import EventForm
 from .emails import send_mail
@@ -22,9 +24,12 @@ html = """
 
 # Create your views here.
 def index(request):
-  events = Event.objects.all()
+  events = Event.objects.all().order_by('-created_at')
+  events_paginator = Paginator(events, 6)
+  page_num = request.GET.get('page')
+  page = events_paginator.get_page(page_num)
   context = {
-    'events': events
+    'page': page
   }
   return render(request, 'events/index.html', context)
 
@@ -33,6 +38,7 @@ def event_detail(request, slug):
   event = get_object_or_404(Event, slug=slug)
   user_already_in_list = None
   event_list = []
+  today = date.today()
   if request.user.is_authenticated:
     for user in event.attendees.all():
       event_list.append(user.email)
@@ -44,7 +50,7 @@ def event_detail(request, slug):
       user = request.user
       if user_already_in_list:
         messages.error(request, 'You are already attending', fail_silently=True)
-        return render(request, 'events/event-detail.html', {'event': event, 'user_already_in_list': user_already_in_list})
+        return render(request, 'events/event-detail.html', {'event': event, 'user_already_in_list': user_already_in_list, 'today':today})
       else:
         event.attendees.create(user=user, email=user.email, first_name=user.first_name, last_name=user.last_name)
         return redirect('events:events-detail', slug=slug)
@@ -53,7 +59,8 @@ def event_detail(request, slug):
 
   context = {
     'event': event,
-    'user_already_in_list': user_already_in_list
+    'user_already_in_list': user_already_in_list,
+    'today': today
   }
   return render(request, 'events/event-detail.html', context)
 
@@ -87,7 +94,7 @@ def subscribe(request):
       email_list.append(subscriber.email)
     if email in email_list:
       messages.error(request, 'You are already subscribed')
-    else: 
+    else:
       sent = send_mail(to_emails=[email])
       if sent:
         Subscribe.objects.create(email=email)

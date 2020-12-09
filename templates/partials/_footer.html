@@ -1,19 +1,21 @@
 
-<div class="bg-secondary">
+<div class="bg-secondary text-white">
 <div class="container"> 
-  <form action="{% url 'events:subscribe' %}" method="POST" class="py-4">
-    {% csrf_token %}
-    <h4 class="text-white">Subscribe To Our Newsletter</h4>
-    <p class="text-white">Join the community to get latest events when uploaded to the site.</p>
-    <div class="form-inline">
-      <input type="text" name="email" id="email" class="form-control" placeholder="someone@example.com">
-      <button type="submit" class="btn btn-danger btn-inline">Subscribe</button>
-    </div>
-  </form>
+  <div class="subscribe-form">
+    <form action="{% url 'events:subscribe' %}" method="POST" class="py-4">
+      {% csrf_token %}
+      <h4>Subscribe To Our Newsletter</h4>
+      <p>Join the community to get latest events when uploaded to the site.</p>
+      <div class="form-input">
+        <input type="text" name="email" id="email" class="form-control" placeholder="someone@example.com">
+        <button type="submit" class="btn btn-danger btn-inline">Subscribe</button>
+      </div>
+    </form>
+  </div>
   <hr>
   <div class="row py-2">
     <div class="col-md-6">
-      <ul>
+      <ul class="social-1">
         <li class="nav-item"><a href="#!" class="nav-link text-white">About</a></li>
         <li class="nav-item"><a href="#!" class="nav-link text-white">Contact</a></li>
         <li class="nav-item"><a href="https://www.oracle.com/ke/education/" target="_blank" class="nav-link text-white">Oracle Courses</a></li>
@@ -21,7 +23,7 @@
       </ul>
     </div>
     <div class="col-md-6">
-      <ul>
+      <ul class="social-2">
         <li class="nav-item"><a href="https://twitter.com/oracle_ku" target="_blank" class="nav-link text-white">Twitter</a></li>
         <li class="nav-item"><a href="#!" class="nav-link text-white">Facebook</a></li>
         <li class="nav-item"><a href="#!" class="nav-link text-white">Linkedin</a></li>

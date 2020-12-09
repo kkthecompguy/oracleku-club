@@ -21,7 +21,12 @@ class EventForm(forms.ModelForm):
   from_time = forms.TimeField(widget=forms.TimeInput(attrs={'class': 'form-control', 'type': 'time'}))
   to_time = forms.TimeField(widget=forms.TimeInput(attrs={'class': 'form-control', 'type': 'time'}))
   venue = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+  event_link = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
 
   class Meta:
     model = Event
-    fields = ['title','slug', 'overview', 'description', 'thumbnail', 'event_date', 'from_time', 'to_time', 'event_type', 'venue', 'featured', ]
+    fields = ['title','slug', 'overview', 'description', 'thumbnail', 'event_date', 'from_time', 'to_time', 'event_type', 'venue', 'featured', 'event_link']
+  
+  def __init__(self, *args, **kwargs):
+    super(EventForm, self).__init__(*args, **kwargs)
+    self.fields['venue', 'event_link'].required = False

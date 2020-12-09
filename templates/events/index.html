@@ -6,7 +6,7 @@ Events | Find Events that meets your needs
 
 {% block content %}
   <div class="row mt-5">
-    {% for event in events %}
+    {% for event in page %}
     <div class="col-lg-4 col-md-4 col-sm-12 mb-3">
       <div class="card h-100">
         <img src="{{event.thumbnail.url}}" alt="Event Thumbnail" class="card-img-top">
@@ -17,15 +17,13 @@ Events | Find Events that meets your needs
       </div>
     </div>
     {% endfor %}
-    
-    <!-- <div class="col-lg-4 col-md-4 col-sm-12 mb-3">
-      <div class="card h-100">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTMEEToJuFK6p_SeXwPKzOh7sZyciRYig65PKKvY9jwSnfdT0FW" alt="" class="card-img-top">
-        <div class="card-body text-center">
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium maxime eos in, dicta omnis harum id minima unde quibusdam itaque.</p>
-          <a href="{% url 'events:events-detail' 'slug' %}" class="btn btn-info btn-sm">View</a>
-        </div>
-      </div>
-    </div> -->
+  </div>
+  <div class="page-links">
+    {% if page.has_previous %}
+      <a href="{% url 'events:index' %}?page={{page.previous_page_number}}" class="previous-page"> << Previous</a>
+    {% endif %}
+    {% if page.has_next %}
+      <a href="{% url 'events:index' %}?page={{page.next_page_number}}" class="next-page">Next >></a>
+    {% endif %}
   </div>
 {% endblock %}

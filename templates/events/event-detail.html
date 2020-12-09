@@ -20,7 +20,7 @@
     </div>
   </div>
 
-  <div class="row" style="width: 100%;">
+  <div class="row" style="width: 100%; padding-bottom: 2.5rem;">
     <div class="col-lg-8 col-md-8 col-sm-12 mb-3">
       <div>
         <img src="{{event.thumbnail.url}}" class="card-img-top" alt="Event Thumbnail" style="width: 100%;">
@@ -50,7 +50,7 @@
       </div>
     </div>
 
-    <div class="col-lg-4 col-md-4 col-sm-12">
+    <div class="col-sm-12 col-md-4 col-lg-4">
       <div class="card card-body">
         <div class="group-details">
           <div class="group-logo">
@@ -70,15 +70,21 @@
             <span><a href="">Add to Calendar</a></span>
           </div>
           <div>
-            <span>{{event.event_type}}</span>
+            <span><strong>{{event.event_type}}</strong></span>
             {% if event.event_type == "Online Event" %}
-              <span>Link visible for attendees</span>
+              {% if user_already_in_list %}
+                <span><a href="{{event.event_link}}">{{event.event_link}}</a></span>
+              {% else %}
+                <span>Link is visible for attendees</span>
+              {% endif %}
             {% else %}
+              <span>Venue: </span>
               <span>{{event.venue}}</span>
             {% endif %}
           </div>
         </div>
       </div>
+      {% if event.event_date > today %}
       <div class="card card-body mt-3">
         <div class="attend">
           {% if request.user.is_authenticated %}
@@ -98,6 +104,7 @@
           {% endif %}
         </div>
       </div>
+      {% endif %}
     </div>
   </div>
 {% endblock %}

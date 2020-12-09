@@ -1,3 +1,7 @@
+* {
+  scroll-behavior: smooth;
+}
+
 
 h1, h2, h3 {
   font-family: "Gotham Rounded A", "Gotham Rounded B", Arial, Helvetica, sans-serif;
@@ -56,6 +60,11 @@ p {
 
 .partners {
   background-color: #fff;
+  padding: 4rem 0;
+}
+
+.partners h2 {
+  font-size: 3rem;
 }
 
 #events {
@@ -82,7 +91,6 @@ p {
 
 .group-details {
   display: flex;
-
 }
 
 .group-logo img {
@@ -95,6 +103,7 @@ p {
 .group-info {
   display: flex;
   flex-direction: column;
+  padding: .5rem;
 }
 
 .timeline {
@@ -106,21 +115,12 @@ p {
   display: flex;
   flex-direction: column;
   margin: .1rem;
-  padding: .2rem;
+  padding: .5rem;
 }
 
 .timeline div a {
   text-decoration: none;
 }
-
-/* .attendees {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 0;
-  justify-content: space-between;
-  align-items: center;
-} */
 
 .attendees {
   display: grid;
@@ -184,16 +184,89 @@ p {
   padding: 1rem;
 }
 
-.form-group-inline {
+.subscribe-form {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 3rem;
+}
+
+.subscribe-form .form-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+
+.recaptcha {
+  width: 100px;
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
+.subscribe-form .form-input input {
+  width: 120px;
+}
+
+.subscribe-form h4 {
+  font-size: 3rem;
+}
+
+.page-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+}
+
+.previous-page {
+  text-decoration: none;
+  border: 1px solid #ccc;
+  text-transform: uppercase;
+  padding: .8rem;
+  margin-right: 6px;
+}
+
+.previous-page:hover {
+  text-decoration: none;
+  color: #ADD8E6;
+}
+
+.next-page {
+  text-decoration: none;
+  border: 1px solid #ccc;
+  text-transform: uppercase;
+  padding: .8rem;
+}
+
+.next-page:hover {
+  text-decoration: none;
+  color: #ADD8E6;
+}
+
+.social-1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 
 @media (max-width: 568px) {
   h1 {
     font-size: 3rem;
+  }
+  .subscribe-form h4 {
+    font-size: 2rem;
   }
 }
